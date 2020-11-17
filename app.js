@@ -29,6 +29,6 @@ app.use('/itemauth', itemauth); //TESTED
 app.use('/shopauth', shopauth); //TESTED
 app.use('/chatauth', chatauth); //TESTED
 
-app.listen(3001, function(){
-    console.log('App is listening locally on 3001.')
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening on port ${process.env.PORT}`)
 });
