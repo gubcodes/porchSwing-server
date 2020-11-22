@@ -86,7 +86,7 @@ router.patch('/', function(req, res) {
     // let color2 = req.body.shopdata.color2;
     // let color3 = req.body.shopdata.color3;
     // let open = req.body.shopdata.open;
-    var shopdata = req.body.user;
+    var shopdata = req.body.shopdata;
 
     Shop.update({
         // userID: userID,
@@ -102,6 +102,7 @@ router.patch('/', function(req, res) {
     {where: { userID: data }}
     ).then(
         function updateSuccess(updateshopdata) {
+            console.log('logo updated')
             res.json({
                 shopdata: shopdata,
                 message: 'Logo successfully updated.'
