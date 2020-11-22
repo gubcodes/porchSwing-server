@@ -11,14 +11,16 @@ router.put('/edit', function (req, res) {
     let pass = req.body.user.password;
     let firstName = req.body.user.firstName;
     let lastName = req.body.user.lastName;
-    let data = req.body.user.id;//this may need to be changed
+    let data = req.user.id;//edited 11/22 12:25am
+    let shopOwner = req.body.user.shopOwner;//added 11/22 12:25am
 
     User.update({
         email: email,
         passwordHash: bcrypt.hashSync(pass, 10),
         firstName: firstName,
         lastName: lastName,
-    }, { where: {id: data} }//this may need to be changed
+        shopOwner: shopOwner
+    }, { where: {id: data} }
     ).then(
         function updateSuccess(user) {
             res.json({
