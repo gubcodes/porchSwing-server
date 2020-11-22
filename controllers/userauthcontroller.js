@@ -24,7 +24,7 @@ router.put('/edit', function (req, res) {
     ).then(
         function updateSuccess(user) {
             res.json({
-                userdata: userdata,
+                user: user,
                 message: 'User information updated.',
             });
         },
