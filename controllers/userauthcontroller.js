@@ -5,24 +5,25 @@ let User = sequelize.import('../models/user');
 let bcrypt = require('bcryptjs');
 
 //EDIT USER: tested (but may need to mess with how it finds the user ID)
-router.put('/edit', function (req, res) {
+router.patch('/edit', function (req, res) {
     console.log(req.user.id)
     // let userdatareturn = req.body.user;
-    let email = req.body.user.email;
-    let pass = req.body.user.password;
-    let firstName = req.body.user.firstName;
-    let lastName = req.body.user.lastName;
-    let data = req.user.id;//edited 11/22 12:25am
-    let shopOwner = req.body.user.shopOwner;//added 11/22 12:25am
+    // let email = req.body.user.email;
+    // let pass = req.body.user.password;
+    // let firstName = req.body.user.firstName;
+    // let lastName = req.body.user.lastName;
+    let data = req.user.id;
+    let shopOwner = req.body.user.shopOwner;
     var userdata = req.body.user;
 
     User.update({
-        email: email,
-        passwordHash: bcrypt.hashSync(pass, 10),
-        firstName: firstName,
-        lastName: lastName,
+        // email: email,
+        // passwordHash: bcrypt.hashSync(pass, 10),
+        // firstName: firstName,
+        // lastName: lastName,
         shopOwner: shopOwner
-    }, { where: {id: data} }
+    }, 
+    { where: {id: data} }
     ).then(
         function updateSuccess(updateduserdata) {
             res.json({
