@@ -80,7 +80,7 @@ router.put('/:id', function (req,res) {
 router.get('/', function(req, res) {
     let data = req.user.id;
 
-    Shop.findOne({
+    Item.findAll({
         where: { userID: data }
     }).then(
         function findOneSuccess(data) {
