@@ -76,6 +76,23 @@ router.put('/:id', function (req,res) {
     );
 });
 
+//GET ITEMS BY USERID FROM TOKEN
+router.get('/', function(req, res) {
+    let data = req.user.id;
+
+    Shop.findOne({
+        where: { userID: data }
+    }).then(
+        function findOneSuccess(data) {
+            res.json(data);
+        },
+        function findOneError(err) {
+            res.send(500, err.message);
+            console.log('--GET ITEMS ERROR--')
+        }
+    );
+});
+
 //DELETE EXISTING ITEM: tested
 router.delete('/:id', function(req, res) {
     let data = req.params.id;
