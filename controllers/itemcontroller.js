@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 let sequelize = require('../db');
 let Item = sequelize.import('../models/item');
+const Op = db.Sequelize.Op;
 
 //GET ALL ITEMS BY USERID: tested
 router.get('/all/:id', function (req, res) {
@@ -35,6 +36,24 @@ router.get('/:id', function(req, res) {
         function findOneError(err) {
             res.send(500, err.message);
             console.log('--GET ITEM ERROR--');
+        }
+    );
+});
+
+//GET ITEMS BY QUERY
+router.get('/searchitems', function(req, res) {
+    const itemName = req.query.itemName;
+    let condition = itemName ? { itemName: { [Op.like]: `%${itemName}%`} } : null;
+
+    Item.findAll({
+        where: condition
+    }).then(
+        function findOneSuccess(data) {
+            res.json(data);
+        },
+        function findOneError(err) {
+            res.send(500, err.message);
+            console.log('--GET ITEMS QUERY ERROR--');
         }
     );
 });
