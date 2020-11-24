@@ -44,12 +44,12 @@ router.get('/:id', function(req, res) {
 //GET ITEMS BY QUERY tested
 router.get('/search/:id', function(req, res) {
     const itemName = req.params.id;
-    var condition = itemName ? { itemName: { [Op.like]: `%${itemName}%`} } : null;
+    var condition = itemName ? { [Op.like]: `%${itemName}%`} : null;
     // var condition = { itemName: { [Op.like]: `%${itemName}%` } }
 
     Item.findAll({
         where: {
-            condition,
+            itemName: condition,
             available: true
         } 
     }).then(
