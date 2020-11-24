@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 let sequelize = require('../db');
 let Item = sequelize.import('../models/item');
-// const Op = db.Sequelize.Op;
+const Op = db.Sequelize.Op;
 
 //GET ALL ITEMS BY USERID: tested
 router.get('/all/:id', function (req, res) {
@@ -41,21 +41,21 @@ router.get('/:id', function(req, res) {
 });
 
 //GET ITEMS BY QUERY
-// router.post('/searchitems', function(req, res) {
-//     const itemName = req.query.itemName;
-//     var condition = itemName ? { itemName: { [Op.like]: `%${itemName}`} } : null;
+router.post('/searchitems', function(req, res) {
+    const itemName = req.query.itemName;
+    var condition = itemName ? { itemName: { [Op.like]: `%${itemName}`} } : null;
 
-//     Item.findAll({
-//         where: condition
-//     }).then(
-//         function findOneSuccess(data) {
-//             res.json(data);
-//         },
-//         function findOneError(err) {
-//             res.send(500, err.message);
-//             console.log('--GET ITEMS QUERY ERROR--');
-//         }
-//     );
-// });
+    Item.findAll({
+        where: condition
+    }).then(
+        function findOneSuccess(data) {
+            res.json(data);
+        },
+        function findOneError(err) {
+            res.send(500, err.message);
+            console.log('--GET ITEMS QUERY ERROR--');
+        }
+    );
+});
 
 module.exports = router;
