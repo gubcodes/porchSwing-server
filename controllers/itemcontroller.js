@@ -41,7 +41,7 @@ router.get('/:id', function(req, res) {
 });
 
 //GET ITEMS BY QUERY
-router.get('/searchitems', function(req, res) {
+router.post('/searchitems', function(req, res) {
     const itemName = req.query.itemName;
     var condition = itemName ? { itemName: { [Op.like]: `%${itemName}`} } : null;
 
