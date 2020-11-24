@@ -26,11 +26,11 @@ router.get('/:id', function(req, res) {
 //GET SHOPS BY QUERY
 router.get('/search/:id', function(req, res) {
     const shopName = req.params.id;
-    var condition = shopName ? { shopName: { [Op.like]: `%${shopName}%`} } : null;
+    var condition = shopName ? { [Op.like]: `%${shopName}%`} : null;
 
     Shop.findAll({
         where: {
-            condition,
+            shopName: condition,
             open: true
         }
     }).then(
