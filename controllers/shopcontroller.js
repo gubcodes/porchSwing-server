@@ -24,12 +24,15 @@ router.get('/:id', function(req, res) {
 });
 
 //GET SHOPS BY QUERY
-router.post('/searchshops', function(req, res) {
-    const shopName = req.query.shopName;
+router.get('/search/:id', function(req, res) {
+    const shopName = req.params.id;
     var condition = shopName ? { shopName: { [Op.like]: `%${shopName}%`} } : null;
 
     Shop.findAll({
-        where: { shopName: condition }
+        where: {
+            condition,
+            open: true
+        }
     }).then(
         function findOneSuccess(data) {
             res.json(data);

@@ -48,7 +48,10 @@ router.get('/search/:id', function(req, res) {
     // var condition = { itemName: { [Op.like]: `%${itemName}%` } }
 
     Item.findAll({
-        where: condition
+        where: {
+            condition,
+            available: true
+        } 
     }).then(
         function findOneSuccess(data) {
             res.json(data);
