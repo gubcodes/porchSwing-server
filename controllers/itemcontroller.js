@@ -48,7 +48,7 @@ router.post('/searchitems', function(req, res) {
     var condition = { itemName: { [Op.like]: `%${itemName}%`} }
 
     Item.findAll({
-        where: condition
+        where: { itemName: condition }
     }).then(
         function findOneSuccess(data) {
             res.json(data);

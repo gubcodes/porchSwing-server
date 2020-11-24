@@ -29,7 +29,7 @@ router.post('/searchshops', function(req, res) {
     var condition = shopName ? { shopName: { [Op.like]: `%${shopName}%`} } : null;
 
     Shop.findAll({
-        where: condition
+        where: { shopName: condition }
     }).then(
         function findOneSuccess(data) {
             res.json(data);
