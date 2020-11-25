@@ -29,7 +29,7 @@ app.use('/userauth', userauth); //TESTED
 app.use('/itemauth', itemauth); //TESTED
 app.use('/shopauth', shopauth); //TESTED
 app.use('/chatauth', chatauth); //TESTED
-app.use('/cartauth', cartauth); //
+app.use('/cartauth', cartauth); ///
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is listening on port ${process.env.PORT}`)
