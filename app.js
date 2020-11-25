@@ -9,9 +9,10 @@ let chatauth = require('./controllers/chatcontroller');
 let userauth = require('./controllers/userauthcontroller');
 let itemauth = require('./controllers/itemauthcontroller');
 let shopauth = require('./controllers/shopauthcontroller');
+let cartauth = require('./controllers/cartcontroller');
 let sequelize = require('./db');
 
-sequelize.sync(); // don't forget: {force: true} for resetting tables
+sequelize.sync({force: true}); // don't forget: {force: true} for resetting tables
 
 app.use(express.json());
 app.use(require('./middleware/headers'));
@@ -28,6 +29,7 @@ app.use('/userauth', userauth); //TESTED
 app.use('/itemauth', itemauth); //TESTED
 app.use('/shopauth', shopauth); //TESTED
 app.use('/chatauth', chatauth); //TESTED
+app.use('/cartauth', cartauth);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is listening on port ${process.env.PORT}`)

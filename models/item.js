@@ -8,6 +8,8 @@ module.exports = function (sequelize, DataTypes) {
         photo1: DataTypes.STRING,
         photo2: DataTypes.STRING,
         photo3: DataTypes.STRING,
-        available: DataTypes. BOOLEAN
+        available: DataTypes.BOOLEAN,
+        sold: DataTypes.BOOLEAN,
+        rating: DataTypes.INTEGER
     });
 };

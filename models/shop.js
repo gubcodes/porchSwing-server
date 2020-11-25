@@ -14,6 +14,7 @@ module.exports = function (sequelize, DataTypes) {
         color1: DataTypes.STRING,
         color2: DataTypes.STRING,
         color3: DataTypes.STRING,
-        open: DataTypes.BOOLEAN
+        open: DataTypes.BOOLEAN,
+        rating: DataTypes.INTEGER
     });
 };
