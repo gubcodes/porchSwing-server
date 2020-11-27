@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let sequelize = require('../db');
-let Cart = sequelize.import('../models/chat');
+let Cart = sequelize.import('../models/cart');
 
 //GET ALL CART ITEMS BY USERID:
 router.get('/', function (req, res) {
