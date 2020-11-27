@@ -61,12 +61,18 @@ router.post('/', function (req, res) {
     let receiverUserID = req.body.chatdata.receiverUserID;
     let message = req.body.chatdata.message;
     let read = req.body.chatdata.read;
+    let subject = req.body.chatdata.subject;
+    let senderUserName = req.body.chatdata.senderUserName;
+    let receiverUserName = req.body.chatdata.receiverUserName;
 
     Chat.create({
         senderUserID: senderUserID,
         receiverUserID: receiverUserID,
         message: message,
-        read: read
+        read: read,
+        subject: subject,
+        senderUserName: senderUserName,
+        receiverUserName: receiverUserName
     }).then(
         function createSuccess(chatdata) {
             res.json({
@@ -86,12 +92,14 @@ router.put('/:id', function (req, res) {
     let receiverUserID = req.body.chatdata.receiverUserID;
     let message = req.body.chatdata.message;
     let read = req.body.chatdata.read;
+    let subject = req.body.chatdata.subject;
 
     Chat.update({
         senderUserID: senderUserID,
         receiverUserID: receiverUserID,
         message: message,
-        read: read
+        read: read,
+        subject: subject
     },
     { where: { id: data}}
     ).then(
@@ -121,6 +129,31 @@ router.delete('/:id', function(req, res) {
         function deleteMessageError(err) {
             res.send(500, err.message);
             console.log('--DELETE MESSAGE ERROR--');
+        }
+    );
+});
+
+//EDIT MESSAGE CHANGE READ: TRUE
+router.patch('/:id', function(req, res) {
+    let data = req.user.id;
+    let messageID = req.body.chatdata.messageID;
+    var chatdata = req.body.chatdata;
+
+    Chat.update({
+        read: true
+    },
+    {where: { receiverUserID: data, id: messageID }}
+    ).then(
+        function updateSuccess(updatechatdata) {
+            console.log('message read: true')
+            res.json({
+                chatdata: chatdata,
+                message: 'message read status successfully changed to true.'
+            });
+        },
+        function updateError(err) {
+            res.send(500, err.message);
+            console.log('--UPDATE MESSAGE READ ERROR--');
         }
     );
 });
