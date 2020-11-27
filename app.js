@@ -12,7 +12,7 @@ let itemauth = require('./controllers/itemauthcontroller');
 let shopauth = require('./controllers/shopauthcontroller');
 let sequelize = require('./db');
 
-sequelize.sync({force: true}); // don't forget: {force: true} for resetting tables
+sequelize.sync(); // don't forget: {force: true} for resetting tables
 
 app.use(express.json());
 app.use(require('./middleware/headers'));
