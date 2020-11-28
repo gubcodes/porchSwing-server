@@ -38,5 +38,22 @@ router.patch('/edit', function (req, res) {
     );
 });
 
+//GET USER BY USERID FROM TOKEN
+router.get('/', function(req, res) {
+    let data = req.user.id;
+
+    User.findOne({
+        where: { id: data }
+    }).then(
+        function findOneSuccess(data) {
+            res.json(data);
+        },
+        function findOneError(err) {
+            res.send(500, err.message);
+            console.log('--GET USER ERROR--')
+        }
+    );
+});
+
 
 module.exports = router;
