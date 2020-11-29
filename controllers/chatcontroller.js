@@ -147,7 +147,7 @@ router.patch('/:id', function(req, res) {
         function updateSuccess(updatechatdata) {
             console.log('message read: true')
             res.json({
-                chatdata: chatdata,
+                // chatdata: chatdata,
                 message: 'message read status successfully changed to true.'
             });
         },
