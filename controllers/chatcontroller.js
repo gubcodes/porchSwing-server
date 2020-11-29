@@ -136,8 +136,8 @@ router.delete('/:id', function(req, res) {
 //EDIT MESSAGE CHANGE READ: TRUE
 router.patch('/:id', function(req, res) {
     let data = req.user.id;
-    let messageID = req.body.chatdata.messageID;
-    var chatdata = req.body.chatdata;
+    let messageID = req.params.id;
+    // var chatdata = req.body.chatdata;
 
     Chat.update({
         read: true
