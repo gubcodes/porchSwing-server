@@ -115,6 +115,46 @@ router.patch('/', function(req, res) {
     );
 });
 
+//EDIT SHOP FLIP THE SIGN
+router.patch('/flip', function(req, res) {
+    let data = req.user.id;
+    // let shopName = req.body.shopdata.shopName;
+    // let payName = req.body.shopdata.payName;
+    // let shopDescription = req.body.shopdata.shopDescription;
+    // let logo = req.body.shopdata.logo;
+    // let color1 = req.body.shopdata.color1;
+    // let color2 = req.body.shopdata.color2;
+    // let color3 = req.body.shopdata.color3;
+    let open = req.body.shopdata.open;
+    var shopdata = req.body.shopdata;
+
+    Shop.update({
+        // userID: userID,
+        // shopName: shopName,
+        // payName: payName,
+        // shopDescription: shopDescription,
+        // logo: logo,
+        // color1: color1,
+        // color2: color2,
+        // color3: color3,
+        open: open
+    },
+    {where: { userID: data }}
+    ).then(
+        function updateSuccess(updateshopdata) {
+            console.log('status updated')
+            res.json({
+                shopdata: shopdata,
+                message: 'you flipped the sign.'
+            });
+        },
+        function updateError(err) {
+            res.send(500, err.message);
+            console.log('--UPDATE SHOP ERROR--');
+        }
+    );
+});
+
 //GET SHOP BY USERID FROM TOKEN
 router.get('/', function(req, res) {
     // let data = req.params.id;
