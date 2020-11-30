@@ -33,9 +33,11 @@ router.post('/', function (req, res) {
         shopUserID: shopUserID,
         quantity: quantity
     }).then(
-        function createSuccess(chatdata) {
+        function createSuccess(updatedcartdata) {
+            console.log('item successfully added to cart.')
             res.json({
-                cartdata: cartdata
+                // cartdata: cartdata
+                message: 'item added to cart.'
             });
         },
         function createError(err) {
