@@ -20,6 +20,23 @@ router.get('/inbox', function (req, res) {
     );
 });
 
+//GET ALL UNREAD MESSAGES BY USERID
+router.get('/unread', function (req, res) {
+    let userID = req.user.id;
+
+    Chat.findAll({
+        where: { receiverUserID: userID, read: false }
+    }).then(
+        function findAllSuccess(data) {
+            res.json(data);
+        },
+        function findAllError(err) {
+            res.send(500, err.message);
+            console.log('--GET UNREAD MESSAGES ERROR--');
+        }
+    );
+});
+
 //GET ALL OUTBOX MESSAGES BY USERID: tested
 router.get('/outbox', function (req, res) {
     let userID = req.user.id;
