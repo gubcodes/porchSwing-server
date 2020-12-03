@@ -77,7 +77,7 @@ router.put('/:id', function (req,res) {
 });
 
 //EDIT EXISTING ITEM: tested, updates database but doesn't return updated data
-router.patch('/:id', function (req,res) {
+router.patch('/update/:id', function (req,res) {
     let userId = req.user.id;
     let itemName = req.body.itemdata.itemName;
     let itemDescription = req.body.itemdata.itemDescription;
