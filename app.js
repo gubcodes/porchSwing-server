@@ -12,6 +12,18 @@ let itemauth = require('./controllers/itemauthcontroller');
 let shopauth = require('./controllers/shopauthcontroller');
 let sequelize = require('./db');
 
+//STRIPE:
+// // Set your secret key. Remember to switch to your live secret key in production!
+// // See your keys here: https://dashboard.stripe.com/account/apikeys
+// const stripe = require('stripe')('pk_test_51HqtlNFbOjNmnOEQhozxFoJLw3EZVhYKDtEMQo6Exmx5XgO3zp4cxscik7FHjkM8SdbKyoz78YIlIXr28VVL8hVW00jRKXb2Jm');
+
+// const paymentIntent = await stripe.paymentIntents.create({
+//   amount: 1099,
+//   currency: 'usd',
+//   // Verify your integration in this guide by including this parameter
+//   metadata: {integration_check: 'accept_a_payment'},
+// });
+
 sequelize.sync(); // don't forget: {force: true} for resetting tables
 
 app.use(express.json());
