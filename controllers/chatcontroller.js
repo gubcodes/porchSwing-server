@@ -103,6 +103,37 @@ router.post('/', function (req, res) {
     );
 });
 
+//CREATE NEW ADMIN MESSAGE
+router.post('/admin', function (req, res) {
+    let senderUserID = 1;
+    let receiverUserID = req.user.id;
+    let message = req.body.chatdata.message;
+    let read = req.body.chatdata.read;
+    let subject = req.body.chatdata.subject;
+    let senderUserName = 'porchSwing';
+    let receiverUserName = req.body.chatdata.receiverUserName;
+    
+    Chat.create({
+        senderUserID: senderUserID,
+        receiverUserID: receiverUserID,
+        message: message,
+        read: read,
+        subject: subject,
+        senderUserName: senderUserName,
+        receiverUserName: receiverUserName
+    }).then(
+        function createSuccess(chatdata) {
+            res.json({
+                chatdata: chatdata
+            });
+        },
+        function createError(err) {
+            res.send(500, err.message);
+            console.log('--CREATE ADMIN MESSAGE ERROR--')
+        }
+    );
+});
+
 //EDIT EXISTING MESSAGE BY MESSAGE ID (MAY NOT USE): not tested
 router.put('/:id', function (req, res) {
     let senderUserID = req.user.id;
