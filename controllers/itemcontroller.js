@@ -45,10 +45,14 @@ router.get('/:id', function(req, res) {
 router.get('/search/:id', function(req, res) {
     const itemName = req.params.id;
     var condition = itemName ? { [Op.iLike]: `%${itemName}%`} : null;
+    var condition2 = itemName ? { [Op.iLike]: `%${itemName}%`} : null;
 
     Item.findAll({
         where: {
+            [Op.or]: [
             itemName: condition,
+            itemDescription: condition2
+            ],
             available: true
         } 
     }).then(
