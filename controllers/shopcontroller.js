@@ -27,10 +27,14 @@ router.get('/:id', function(req, res) {
 router.get('/search/:id', function(req, res) {
     const shopName = req.params.id;
     var condition = shopName ? { [Op.iLike]: `%${shopName}%`} : null;
+    var condition2 = shopName ? { [Op.iLike]: `%${shopName}%`} : null;
 
     Shop.findAll({
         where: {
-            shopName: condition,
+            [Op.or]: [
+            {shopName: condition},
+            {shopDescription: condition2}
+            ],
             open: true
         }
     }).then(
