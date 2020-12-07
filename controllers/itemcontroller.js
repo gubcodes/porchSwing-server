@@ -50,8 +50,8 @@ router.get('/search/:id', function(req, res) {
     Item.findAll({
         where: {
             [Op.or]: [
-            itemName: condition,
-            itemDescription: condition2
+            {itemName: condition},
+            {itemDescription: condition2}
             ],
             available: true
         } 
