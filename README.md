@@ -18,3 +18,30 @@
      I8                                                                                                        I8   8I 
      I8                                                                                                        `8, ,8I 
      I8                                                                                                         `Y8P"  
+
+this is the API for porchSwing - created in node.js
+
+---------------------------------------------------
+
+after cloning: 
+$npm install
+
+---------------------------------------------------
+
+dependent upon:
+sequelize
+bcryptjs
+dotenv
+express
+jsonwebtoken
+pg
+pg-hstore
+stripe (coming soon)
+
+---------------------------------------------------
+
+current version:
+1.0.0
+
+released:
+12-7-2020
