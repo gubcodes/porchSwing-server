@@ -24,7 +24,7 @@ let sequelize = require('./db');
 //   metadata: {integration_check: 'accept_a_payment'},
 // });
 
-sequelize.sync({force: true}); // don't forget: {force: true} for resetting tables
+sequelize.sync(); // don't forget: {force: true} for resetting tables
 
 app.use(express.json());
 app.use(require('./middleware/headers'));
