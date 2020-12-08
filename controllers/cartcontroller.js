@@ -20,24 +20,24 @@ router.get('/', function (req, res) {
     );
 });
 
-//GET CART TOTAL PRICE BY USERID:
-router.get('/sum', function (req, res) {
-    let userID = req.user.id;
+// //GET CART TOTAL PRICE BY USERID: not going to work because price is not in cart
+// router.get('/sum', function (req, res) {
+//     let userID = req.user.id;
 
-    Cart.sum('price', {
-        where: { userID: userID }
-    }).then(sum => {
-        console.log('sum line30: ', sum);
-    }).then(
-        function sumSuccess(data) {
-            res.json(data);
-        },
-        function sumError(err) {
-            res.send(500, err.message);
-            console.log('--GET CART SUM ERROR--')
-        }
-    );
-});
+//     Cart.sum('price', {
+//         where: { userID: userID }
+//     // }).then(sum => {
+//     //     console.log('sum line30: ', sum);
+//     }).then(
+//         function sumSuccess(data) {
+//             res.json(data);
+//         },
+//         function sumError(err) {
+//             res.send(500, err.message);
+//             console.log('--GET CART SUM ERROR--')
+//         }
+//     );
+// });
 
 //ADD ITEM TO CART
 router.post('/', function (req, res) {
